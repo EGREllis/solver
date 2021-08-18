@@ -16,6 +16,11 @@ public class MapPuzzleImpl implements Puzzle, Iterable<Place> {
     }
 
     @Override
+    public void setCellAt(Place place, int value) {
+        map.put(place, value);
+    }
+
+    @Override
     public Iterator<Place> iterator() {
         return AREA.iterator();
     }

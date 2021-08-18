@@ -13,6 +13,12 @@ public class ArrayPuzzleImpl implements Puzzle {
         return data[offset.getY()][offset.getX()];
     }
 
+    @Override
+    public void setCellAt(Place place, int value) {
+        Place offset = offset(place);
+        data[offset.getY()][offset.getX()] = value;
+    }
+
     private Place offset(Place place) {
         return new Place(place.getX()-1, place.getY()-1);
     }

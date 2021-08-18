@@ -6,4 +6,5 @@ public interface Puzzle {
     Range DIGITS = new Range(1, 9);
     Area AREA = new Area(WIDTH, HEIGHT);
     int getCellAt(Place place);
+    void setCellAt(Place place, int value);
 }
