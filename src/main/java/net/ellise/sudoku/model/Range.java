@@ -21,6 +21,8 @@ public class Range implements Iterable<Integer> {
         return max;
     }
 
+    public int getRange() { return max - min + 1; }
+
     @Override
     public String toString() {
         return String.format("[%1$d, %2$d]", min, max);

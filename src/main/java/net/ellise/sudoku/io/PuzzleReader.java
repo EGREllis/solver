@@ -2,8 +2,7 @@ package net.ellise.sudoku.io;
 
 import net.ellise.sudoku.model.Place;
 import net.ellise.sudoku.model.Puzzle;
-import net.ellise.sudoku.model.PuzzleImpl;
-import net.ellise.sudoku.model.Range;
+import net.ellise.sudoku.model.MapPuzzleImpl;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -53,6 +52,6 @@ public class PuzzleReader implements Callable<Puzzle> {
         } catch (IOException ioException) {
             throw new RuntimeException(ioException);
         }
-        return new PuzzleImpl(data);
+        return new MapPuzzleImpl(data);
     }
 }
