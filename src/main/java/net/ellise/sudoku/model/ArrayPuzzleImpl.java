@@ -9,6 +9,11 @@ public class ArrayPuzzleImpl implements Puzzle {
 
     @Override
     public int getCellAt(Place place) {
-        return data[place.getY()][place.getX()];
+        Place offset = offset(place);
+        return data[offset.getY()][offset.getX()];
+    }
+
+    private Place offset(Place place) {
+        return new Place(place.getX()-1, place.getY()-1);
     }
 }
