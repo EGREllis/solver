@@ -1,6 +1,6 @@
 package net.ellise.sudoku;
 
-import net.ellise.sudoku.io.PuzzleReader;
+import net.ellise.sudoku.io.MapPuzzleReader;
 import net.ellise.sudoku.model.Puzzle;
 import net.ellise.sudoku.view.cli.CliView;
 
@@ -11,7 +11,7 @@ import net.ellise.sudoku.view.cli.CliView;
 public class App 
 {
     public static void main( String[] args ) throws Exception {
-        Puzzle puzzle = new PuzzleReader("puzzle/1.dat").call();
+        Puzzle puzzle = new MapPuzzleReader("puzzle/1.dat").call();
         System.out.println(new CliView().render(puzzle));
     }
 }

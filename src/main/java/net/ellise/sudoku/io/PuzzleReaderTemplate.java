@@ -1,8 +1,8 @@
 package net.ellise.sudoku.io;
 
+import net.ellise.sudoku.model.MapPuzzleImpl;
 import net.ellise.sudoku.model.Place;
 import net.ellise.sudoku.model.Puzzle;
-import net.ellise.sudoku.model.MapPuzzleImpl;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,16 +11,20 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
-public class PuzzleReader implements Callable<Puzzle> {
+public abstract class PuzzleReaderTemplate implements Callable<Puzzle> {
     private final String path;
 
-    public PuzzleReader(String path) {
+    public PuzzleReaderTemplate(String path) {
         this.path = path;
     }
 
+    protected abstract void initiateStorage();
+    protected abstract void savePlace(Place place, int value);
+    protected abstract Puzzle getPuzzle();
+
     @Override
     public Puzzle call() throws Exception {
-        Map<Place,Integer> data = new HashMap<>();
+        initiateStorage();
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(ClassLoader.getSystemResourceAsStream(path)))) {
             for (int row : Puzzle.HEIGHT) {
                 String line = reader.readLine();
@@ -46,12 +50,12 @@ public class PuzzleReader implements Callable<Puzzle> {
                             throw new IllegalStateException(String.format("Could not parse sudoku cell (%1$d, %2$d) value %3$s", col, row, line));
                     }
                     Place place = new Place(col, row);
-                    data.put(place, value);
+                    savePlace(place, value);
                 }
             }
         } catch (IOException ioException) {
             throw new RuntimeException(ioException);
         }
-        return new MapPuzzleImpl(data);
+        return getPuzzle();
     }
 }
