@@ -2,10 +2,11 @@ package net.ellise.sudoku.view.cli;
 
 import net.ellise.sudoku.model.Place;
 import net.ellise.sudoku.model.Puzzle;
+import net.ellise.sudoku.view.View;
 
 import java.io.PrintStream;
 
-public class CliView {
+public class CliView implements View {
     private static final String HEADER = "+---+---+---+\n";
     private final PrintStream output;
 

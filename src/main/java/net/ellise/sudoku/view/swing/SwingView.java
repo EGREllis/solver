@@ -1,11 +1,12 @@
 package net.ellise.sudoku.view.swing;
 
 import net.ellise.sudoku.model.Puzzle;
+import net.ellise.sudoku.view.View;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class SwingView {
+public class SwingView implements View {
     private JFrame main;
     private SudokuCanvas canvas;
 
