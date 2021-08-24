@@ -3,10 +3,17 @@ package net.ellise.sudoku.view.cli;
 import net.ellise.sudoku.model.Place;
 import net.ellise.sudoku.model.Puzzle;
 
+import java.io.PrintStream;
+
 public class CliView {
     private static final String HEADER = "+---+---+---+\n";
+    private final PrintStream output;
 
-    public String render(Puzzle puzzle) {
+    public CliView(PrintStream output) {
+        this.output = output;
+    }
+
+    public void render(Puzzle puzzle) {
         StringBuilder result = new StringBuilder();
         for (int row : Puzzle.HEIGHT) {
             if (row % 3 == 1) {
@@ -24,10 +31,7 @@ public class CliView {
             result.append("|\n");
         }
         result.append(HEADER);
-        return result.toString();
-    }
-
-    private String header() {
-        return "+---+---+---+\n";
+        output.println(result);
+        output.flush();
     }
 }

@@ -14,21 +14,21 @@ public class App
 {
     public static void main( String[] args ) throws Exception {
         String path = "puzzle/1.dat";
-        CliView view = new CliView();
+        CliView view = new CliView(System.out);
 
         Puzzle mapPuzzle = new MapPuzzleReader(path).call();
-        System.out.println(view.render(mapPuzzle));
+        view.render(mapPuzzle);
 
         Puzzle arrayPuzzle = new ArrayPuzzleReader(path).call();
-        System.out.println(view.render(arrayPuzzle));
+        view.render(arrayPuzzle);
 
         BacktrackingSolver solver = new BacktrackingSolver();
         if (solver.solve(arrayPuzzle)) {
             System.out.println("Has been solved:");
-            System.out.println(view.render(arrayPuzzle));
+            view.render(arrayPuzzle);
         } else {
             System.out.println("Has not been solved:");
-            System.out.println(view.render(arrayPuzzle));
+            view.render(arrayPuzzle);
         }
     }
 }
