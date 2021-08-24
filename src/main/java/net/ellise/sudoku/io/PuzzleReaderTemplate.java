@@ -1,14 +1,11 @@
 package net.ellise.sudoku.io;
 
-import net.ellise.sudoku.model.MapPuzzleImpl;
 import net.ellise.sudoku.model.Place;
 import net.ellise.sudoku.model.Puzzle;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.Callable;
 
 public abstract class PuzzleReaderTemplate implements Callable<Puzzle> {

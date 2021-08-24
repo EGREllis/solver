@@ -1,6 +1,6 @@
 package net.ellise.sudoku.io;
 
-import net.ellise.sudoku.model.ArrayPuzzleImpl;
+import net.ellise.sudoku.model.puzzle.ArrayPuzzleImpl;
 import net.ellise.sudoku.model.Place;
 import net.ellise.sudoku.model.Puzzle;
 

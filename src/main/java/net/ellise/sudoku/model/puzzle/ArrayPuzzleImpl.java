@@ -1,4 +1,7 @@
-package net.ellise.sudoku.model;
+package net.ellise.sudoku.model.puzzle;
+
+import net.ellise.sudoku.model.Place;
+import net.ellise.sudoku.model.Puzzle;
 
 public class ArrayPuzzleImpl implements Puzzle {
     private final int[][] data;

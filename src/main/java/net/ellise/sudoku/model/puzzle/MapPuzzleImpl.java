@@ -1,4 +1,7 @@
-package net.ellise.sudoku.model;
+package net.ellise.sudoku.model.puzzle;
+
+import net.ellise.sudoku.model.Place;
+import net.ellise.sudoku.model.Puzzle;
 
 import java.util.Iterator;
 import java.util.Map;
