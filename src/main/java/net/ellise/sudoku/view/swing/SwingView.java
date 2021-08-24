@@ -12,10 +12,13 @@ public class SwingView implements View {
 
     public void initialise() {
         main = new JFrame("Sudoku with solver");
+
+        main.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         main.setLayout(new BorderLayout());
         canvas = new SudokuCanvas();
-        main.add(canvas, BorderLayout.CENTER);
 
+        main.add(canvas, BorderLayout.CENTER);
+        main.setSize(500,500);
         main.setVisible(true);
         main.pack();
     }
