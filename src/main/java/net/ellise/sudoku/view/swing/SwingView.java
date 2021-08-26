@@ -16,6 +16,7 @@ public class SwingView implements View {
         main.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         main.setLayout(new BorderLayout());
         canvas = new SudokuCanvas();
+        canvas.addMouseListener(canvas.getMouseListener());
 
         main.add(canvas, BorderLayout.CENTER);
         main.setSize(500,500);
