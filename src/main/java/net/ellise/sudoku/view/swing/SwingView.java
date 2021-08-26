@@ -25,6 +25,6 @@ public class SwingView implements View {
     }
 
     public void render(Puzzle puzzle) {
-
+        this.canvas.render(puzzle);
     }
 }
