@@ -66,7 +66,11 @@ public class SudokuCanvas extends Canvas implements View {
                 Place offset = new Place(place.getX() - 1, place.getY());
                 int value = puzzle.getCellAt(place);
                 if (value != 0) {
-                    g.drawString(Integer.toString(value), offset.getX() * cellWidth, offset.getY() * cellHeight);
+                    Font font = new Font(Font.SANS_SERIF, Font.PLAIN, 30);
+                    g.setFont(font);
+                    int drawX = (int)(offset.getX() * cellWidth + (0.40 * cellWidth));
+                    int drawY = (int)(offset.getY() * cellHeight - (0.25 * cellHeight));
+                    g.drawString(Integer.toString(value), drawX, drawY);
                 }
             }
         }
