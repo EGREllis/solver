@@ -3,6 +3,7 @@ package net.ellise.sudoku.model.puzzle;
 import net.ellise.sudoku.model.Place;
 import net.ellise.sudoku.model.Puzzle;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -21,6 +22,12 @@ public class MapPuzzleImpl implements Puzzle, Iterable<Place> {
     @Override
     public void setCellAt(Place place, int value) {
         map.put(place, value);
+    }
+
+    @Override
+    public Puzzle deepCopy() {
+        Map<Place, Integer> newMap = new HashMap<>(map);
+        return new MapPuzzleImpl(newMap);
     }
 
     @Override

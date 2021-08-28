@@ -7,4 +7,5 @@ public interface Puzzle {
     Area AREA = new Area(WIDTH, HEIGHT);
     int getCellAt(Place place);
     void setCellAt(Place place, int value);
+    Puzzle deepCopy();
 }

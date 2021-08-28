@@ -1,7 +1,5 @@
 package net.ellise.sudoku.controller;
 
-import net.ellise.sudoku.io.ArrayPuzzleReader;
-import net.ellise.sudoku.io.MapPuzzleReader;
 import net.ellise.sudoku.solver.BacktrackingSolver;
 import net.ellise.sudoku.model.Puzzle;
 import net.ellise.sudoku.view.View;
@@ -17,13 +15,14 @@ public class App
         Puzzle puzzle = settings.getParser(cli.getPuzzlePath()).call();
         view.render(puzzle);
 
+        Puzzle solved = puzzle.deepCopy();
         BacktrackingSolver solver = new BacktrackingSolver();
-        if (solver.solve(puzzle)) {
+        if (solver.solve(solved)) {
             System.out.println("Has been solved:");
-            view.render(puzzle);
+            //view.render(puzzle);
         } else {
             System.out.println("Has not been solved:");
-            view.render(puzzle);
+            //view.render(puzzle);
         }
     }
 }
