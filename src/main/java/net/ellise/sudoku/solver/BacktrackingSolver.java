@@ -2,14 +2,17 @@ package net.ellise.sudoku.solver;
 
 import net.ellise.sudoku.model.Place;
 import net.ellise.sudoku.model.Puzzle;
+import net.ellise.sudoku.model.Solver;
 
-public class BacktrackingSolver {
+public class BacktrackingSolver implements Solver {
 
     public boolean solve(Puzzle puzzle) {
         Place startPlace = findNextBlank(puzzle);
-        for (int newValue : Puzzle.DIGITS) {
-            if (solve(puzzle, startPlace, newValue)) {
-                return true;
+        if (startPlace != null) {
+            for (int newValue : Puzzle.DIGITS) {
+                if (solve(puzzle, startPlace, newValue)) {
+                    return true;
+                }
             }
         }
         return false;

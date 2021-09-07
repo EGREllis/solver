@@ -2,7 +2,9 @@ package net.ellise.sudoku.controller;
 
 import net.ellise.sudoku.io.ArrayPuzzleReader;
 import net.ellise.sudoku.io.MapPuzzleReader;
+import net.ellise.sudoku.model.Command;
 import net.ellise.sudoku.model.Puzzle;
+import net.ellise.sudoku.solver.BacktrackingSolver;
 import net.ellise.sudoku.view.View;
 import net.ellise.sudoku.view.cli.CliView;
 import net.ellise.sudoku.view.swing.SwingView;
@@ -29,7 +31,9 @@ public class CommandLineSettings {
             return new CliView(System.out);
         } else {
             SwingView view = new SwingView();
+            Command solverCommand = new SolverCommand(view, new BacktrackingSolver());
             view.initialise();
+            view.addKeyListener(' ', solverCommand);
             return view;
         }
     }

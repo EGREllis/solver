@@ -76,6 +76,10 @@ public class SudokuCanvas extends Canvas implements View {
         }
     }
 
+    public Puzzle getPuzzle() {
+        return puzzle.deepCopy();
+    }
+
     public MouseListener getMouseListener() {
         return new SudokuCanvasMouseListener();
     }
@@ -88,12 +92,16 @@ public class SudokuCanvas extends Canvas implements View {
 
     public void update() {
         try {
-            SwingUtilities.invokeAndWait(new Runnable() {
-                @Override
-                public void run() {
-                    SudokuCanvas.this.repaint();
-                }
-            });
+            if (SwingUtilities.isEventDispatchThread()) {
+                SudokuCanvas.this.repaint();
+            } else {
+                SwingUtilities.invokeAndWait(new Runnable() {
+                    @Override
+                    public void run() {
+                        SudokuCanvas.this.repaint();
+                    }
+                });
+            }
         } catch (Exception e) {
             System.err.println(e.getMessage());
             e.printStackTrace(System.err);

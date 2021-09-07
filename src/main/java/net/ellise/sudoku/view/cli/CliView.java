@@ -9,12 +9,19 @@ import java.io.PrintStream;
 public class CliView implements View {
     private static final String HEADER = "+---+---+---+\n";
     private final PrintStream output;
+    private Puzzle puzzle;
 
     public CliView(PrintStream output) {
         this.output = output;
     }
 
+    @Override
+    public Puzzle getPuzzle() {
+        return puzzle;
+    }
+
     public void render(Puzzle puzzle) {
+        this.puzzle = puzzle;
         StringBuilder result = new StringBuilder();
         for (int row : Puzzle.HEIGHT) {
             if (row % 3 == 1) {
