@@ -1,4 +1,4 @@
-package net.ellise.sudoku.controller;
+package net.ellise.sudoku.controller.command;
 
 import net.ellise.sudoku.model.Command;
 import net.ellise.sudoku.model.Puzzle;
