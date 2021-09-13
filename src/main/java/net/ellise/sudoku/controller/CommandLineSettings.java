@@ -1,9 +1,12 @@
 package net.ellise.sudoku.controller;
 
 import net.ellise.sudoku.controller.command.NewCommand;
+import net.ellise.sudoku.controller.command.OpenCommand;
 import net.ellise.sudoku.controller.command.SolverCommand;
 import net.ellise.sudoku.io.ArrayPuzzleReader;
 import net.ellise.sudoku.io.MapPuzzleReader;
+import net.ellise.sudoku.io.PuzzleReader;
+import net.ellise.sudoku.io.composite.source.Source;
 import net.ellise.sudoku.model.Command;
 import net.ellise.sudoku.model.Puzzle;
 import net.ellise.sudoku.model.puzzle.ArrayPuzzleImpl;
@@ -15,7 +18,6 @@ import net.ellise.sudoku.view.swing.SwingView;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.Callable;
 
 public class CommandLineSettings {
     private final CommandLineArgs args;
@@ -24,11 +26,11 @@ public class CommandLineSettings {
         this.args = args;
     }
 
-    public Callable<Puzzle> getParser(String path) {
+    public PuzzleReader getPuzzleReader(Source source) {
         if (args.isArrayBased()) {
-            return new ArrayPuzzleReader(path);
+            return new ArrayPuzzleReader(source);
         } else {
-            return new MapPuzzleReader(path);
+            return new MapPuzzleReader(source);
         }
     }
 
@@ -62,6 +64,7 @@ public class CommandLineSettings {
     public Map<String,Command> getMenuCommands(View view) {
         Map<String,Command> menuCommands = new HashMap<>();
         menuCommands.put("New", new NewCommand(this, view));
+        menuCommands.put("Open", new OpenCommand(this, view));
         return menuCommands;
     }
 }

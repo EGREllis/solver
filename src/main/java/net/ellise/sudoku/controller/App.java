@@ -1,5 +1,6 @@
 package net.ellise.sudoku.controller;
 
+import net.ellise.sudoku.io.composite.source.ClasspathSource;
 import net.ellise.sudoku.solver.BacktrackingSolver;
 import net.ellise.sudoku.model.Puzzle;
 import net.ellise.sudoku.view.View;
@@ -12,7 +13,7 @@ public class App
 
         View view = settings.getView();
 
-        Puzzle puzzle = settings.getParser(cli.getPuzzlePath()).call();
+        Puzzle puzzle = settings.getPuzzleReader(new ClasspathSource()).readPuzzle(cli.getPuzzlePath());
         view.render(puzzle);
 
         Puzzle solved = puzzle.deepCopy();

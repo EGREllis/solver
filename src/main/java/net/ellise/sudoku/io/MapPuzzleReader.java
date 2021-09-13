@@ -1,5 +1,6 @@
 package net.ellise.sudoku.io;
 
+import net.ellise.sudoku.io.composite.source.Source;
 import net.ellise.sudoku.model.puzzle.MapPuzzleImpl;
 import net.ellise.sudoku.model.Place;
 import net.ellise.sudoku.model.Puzzle;
@@ -10,8 +11,8 @@ import java.util.Map;
 public class MapPuzzleReader extends PuzzleReaderTemplate {
     private Map<Place,Integer> data;
 
-    public MapPuzzleReader(String path) {
-        super(path);
+    public MapPuzzleReader(Source source) {
+        super(source);
     }
 
     @Override

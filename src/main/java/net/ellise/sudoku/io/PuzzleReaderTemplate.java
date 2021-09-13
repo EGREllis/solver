@@ -1,5 +1,6 @@
 package net.ellise.sudoku.io;
 
+import net.ellise.sudoku.io.composite.source.Source;
 import net.ellise.sudoku.model.Place;
 import net.ellise.sudoku.model.Puzzle;
 
@@ -8,11 +9,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.concurrent.Callable;
 
-public abstract class PuzzleReaderTemplate implements Callable<Puzzle> {
-    private final String path;
+public abstract class PuzzleReaderTemplate implements PuzzleReader {
+    private final Source source;
 
-    public PuzzleReaderTemplate(String path) {
-        this.path = path;
+    public PuzzleReaderTemplate(Source source) {
+        this.source = source;
     }
 
     protected abstract void initiateStorage();
@@ -20,9 +21,9 @@ public abstract class PuzzleReaderTemplate implements Callable<Puzzle> {
     protected abstract Puzzle getPuzzle();
 
     @Override
-    public Puzzle call() throws Exception {
+    public Puzzle readPuzzle(String path) throws Exception {
         initiateStorage();
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(ClassLoader.getSystemResourceAsStream(path)))) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(source.getSource(path)))) {
             for (int row : Puzzle.HEIGHT) {
                 String line = reader.readLine();
                 for (int col : Puzzle.WIDTH) {

@@ -1,5 +1,6 @@
 package net.ellise.sudoku.io;
 
+import net.ellise.sudoku.io.composite.source.Source;
 import net.ellise.sudoku.model.puzzle.ArrayPuzzleImpl;
 import net.ellise.sudoku.model.Place;
 import net.ellise.sudoku.model.Puzzle;
@@ -7,8 +8,8 @@ import net.ellise.sudoku.model.Puzzle;
 public class ArrayPuzzleReader extends PuzzleReaderTemplate {
     private int[][] data;
 
-    public ArrayPuzzleReader(String path) {
-        super(path);
+    public ArrayPuzzleReader(Source source) {
+        super(source);
     }
 
     @Override
