@@ -25,14 +25,10 @@ public class OpenCommand implements Command {
     public void execute() {
         JFileChooser fileChooser = new JFileChooser();
         int retval = fileChooser.showOpenDialog(dialogMain);
-        System.out.println("File chooser retval: "+retval);
         if (retval == JFileChooser.APPROVE_OPTION) {
-            System.out.println("Approved");
             File file = fileChooser.getSelectedFile();
             if (file == null) {
                 System.out.println("Selected file is null");
-            } else {
-                System.out.println("Absolute path: "+file.getAbsolutePath());
             }
             try {
                 Puzzle puzzle = settings.getPuzzleReader(new FilePathSource()).readPuzzle(file.getAbsolutePath());
