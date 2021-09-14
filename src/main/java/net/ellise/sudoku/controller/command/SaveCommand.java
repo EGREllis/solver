@@ -1,6 +1,7 @@
 package net.ellise.sudoku.controller.command;
 
 import net.ellise.sudoku.controller.CommandLineSettings;
+import net.ellise.sudoku.io.PuzzleWriter;
 import net.ellise.sudoku.io.composite.source.FilePathSource;
 import net.ellise.sudoku.model.Command;
 import net.ellise.sudoku.model.Puzzle;
@@ -9,28 +10,31 @@ import net.ellise.sudoku.view.View;
 import javax.swing.*;
 import java.io.File;
 
-public class OpenCommand implements Command {
-    private final JFrame dialogMain = new JFrame("Open");
-    private final View view;
+public class SaveCommand implements Command {
+    private final JFrame dialogMain = new JFrame("Save as");
     private final CommandLineSettings settings;
+    private final View view;
 
-    public OpenCommand(CommandLineSettings settings, View view) {
-        this.view = view;
+    public SaveCommand(CommandLineSettings settings, View view) {
         this.settings = settings;
+        this.view = view;
     }
 
     @Override
     public void execute() {
         JFileChooser fileChooser = new JFileChooser(".");
-        int retval = fileChooser.showOpenDialog(dialogMain);
+        int retval = fileChooser.showSaveDialog(dialogMain);
         if (retval == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
-            if (file == null) {
-                System.out.println("Selected file is null");
-            }
+
             try {
-                Puzzle puzzle = settings.getPuzzleReader(new FilePathSource()).readPuzzle(file.getAbsolutePath());
-                view.render(puzzle);
+                if (file != null) {
+                    Puzzle puzzle = view.getPuzzle();
+                    PuzzleWriter writer = settings.getPuzzleWriter();
+                    writer.writePuzzle(file.getAbsolutePath(), puzzle);
+                } else {
+                    System.out.println("Selected file is null");
+                }
             } catch (Exception e) {
                 System.err.println(e.getMessage());
                 e.printStackTrace(System.err);
