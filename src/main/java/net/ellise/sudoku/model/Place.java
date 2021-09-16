@@ -36,4 +36,12 @@ public class Place {
     public int hashCode() {
         return Integer.hashCode(x) * 13 + Integer.hashCode(y);
     }
+
+    public Place applyArrayOffset() {
+        return new Place(x-1, y-1);
+    }
+
+    public Place applyInverseArrayOffset() {
+        return new Place(x+1, y+1);
+    }
 }

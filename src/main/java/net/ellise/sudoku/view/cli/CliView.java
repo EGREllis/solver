@@ -42,4 +42,9 @@ public class CliView implements View {
         output.println(result);
         output.flush();
     }
+
+    @Override
+    public Place getSelected() {
+        return null;
+    }
 }

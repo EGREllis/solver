@@ -56,10 +56,13 @@ public class CommandLineSettings {
             return new CliView(System.out);
         } else {
             SwingView view = new SwingView();
-            Command solverCommand = new SolverCommand(view, new BacktrackingSolver());
+
             Map<String,Command> menuCommands = getMenuCommands(view);
             view.initialise(menuCommands);
-            view.addKeyListener(' ', solverCommand);
+
+            Map<String, Command> keyboardCommands = getKeyboardCommands(view);
+            view.addKeyListeners(keyboardCommands);
+
             return view;
         }
     }
@@ -71,5 +74,21 @@ public class CommandLineSettings {
         menuCommands.put("SaveAs", new SaveCommand(this, view));
         menuCommands.put("Exit", new ExitCommand());
         return menuCommands;
+    }
+
+    public Map<String,Command> getKeyboardCommands(View view) {
+        Map<String,Command> keyboardCommands = new HashMap<>();
+        keyboardCommands.put(" ", new SolverCommand(view, new BacktrackingSolver()));
+        keyboardCommands.put("0", new DigitCommand(view, 0));
+        keyboardCommands.put("1", new DigitCommand(view, 1));
+        keyboardCommands.put("2", new DigitCommand(view, 2));
+        keyboardCommands.put("3", new DigitCommand(view, 3));
+        keyboardCommands.put("4", new DigitCommand(view, 4));
+        keyboardCommands.put("5", new DigitCommand(view, 5));
+        keyboardCommands.put("6", new DigitCommand(view, 6));
+        keyboardCommands.put("7", new DigitCommand(view, 7));
+        keyboardCommands.put("8", new DigitCommand(view, 8));
+        keyboardCommands.put("9", new DigitCommand(view, 9));
+        return keyboardCommands;
     }
 }

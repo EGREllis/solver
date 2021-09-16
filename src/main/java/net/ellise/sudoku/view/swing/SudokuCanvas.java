@@ -90,6 +90,11 @@ public class SudokuCanvas extends Canvas implements View {
         update();
     }
 
+    @Override
+    public Place getSelected() {
+        return place.applyInverseArrayOffset();
+    }
+
     public void update() {
         try {
             if (SwingUtilities.isEventDispatchThread()) {
@@ -116,7 +121,7 @@ public class SudokuCanvas extends Canvas implements View {
             int cellHeight = SudokuCanvas.this.getHeight() / 9;
             int cellX = e.getX() / cellWidth;
             int cellY = e.getY() / cellHeight;
-            System.out.println(String.format("Clicked (%1$d,%2$d) cell (%3$d,%4$d)", e.getX(), e.getY(), cellX, cellY));
+            //System.out.println(String.format("Clicked (%1$d,%2$d) cell (%3$d,%4$d)", e.getX(), e.getY(), cellX, cellY));
             SudokuCanvas.this.place = new Place(cellX, cellY);
             SudokuCanvas.this.repaint();
         }

@@ -1,6 +1,7 @@
 package net.ellise.sudoku.view.swing;
 
 import net.ellise.sudoku.model.Command;
+import net.ellise.sudoku.model.Place;
 import net.ellise.sudoku.model.Puzzle;
 import net.ellise.sudoku.view.View;
 
@@ -72,7 +73,20 @@ public class SwingView implements View {
         this.canvas.render(puzzle);
     }
 
+    @Override
+    public Place getSelected() {
+        return canvas.getSelected();
+    }
+
     public void addKeyListener(char key, Command command) {
         this.canvas.addKeyListener(new CommandKeyListener(key, command));
+    }
+
+    public void addKeyListeners(Map<String,Command> commands) {
+        for (Map.Entry<String,Command> entry : commands.entrySet()) {
+            char key = entry.getKey().charAt(0);
+            Command command = entry.getValue();
+            addKeyListener(key, command);
+        }
     }
 }
