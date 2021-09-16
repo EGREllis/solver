@@ -12,7 +12,6 @@ import net.ellise.sudoku.model.puzzle.ArrayPuzzleImpl;
 import net.ellise.sudoku.model.puzzle.MapPuzzleImpl;
 import net.ellise.sudoku.solver.BacktrackingSolver;
 import net.ellise.sudoku.view.View;
-import net.ellise.sudoku.view.cli.CliView;
 import net.ellise.sudoku.view.swing.SwingView;
 
 import java.util.HashMap;
@@ -52,19 +51,15 @@ public class CommandLineSettings {
     }
 
     public View getView() {
-        if (args.isTerminalBased()) {
-            return new CliView(System.out);
-        } else {
-            SwingView view = new SwingView();
+        SwingView view = new SwingView();
 
-            Map<String,Command> menuCommands = getMenuCommands(view);
-            view.initialise(menuCommands);
+        Map<String,Command> menuCommands = getMenuCommands(view);
+        view.initialise(menuCommands);
 
-            Map<String, Command> keyboardCommands = getKeyboardCommands(view);
-            view.addKeyListeners(keyboardCommands);
+        Map<String, Command> keyboardCommands = getKeyboardCommands(view);
+        view.addKeyListeners(keyboardCommands);
 
-            return view;
-        }
+        return view;
     }
 
     public Map<String,Command> getMenuCommands(View view) {
