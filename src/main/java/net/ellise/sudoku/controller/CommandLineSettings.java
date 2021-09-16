@@ -1,9 +1,6 @@
 package net.ellise.sudoku.controller;
 
-import net.ellise.sudoku.controller.command.NewCommand;
-import net.ellise.sudoku.controller.command.OpenCommand;
-import net.ellise.sudoku.controller.command.SaveCommand;
-import net.ellise.sudoku.controller.command.SolverCommand;
+import net.ellise.sudoku.controller.command.*;
 import net.ellise.sudoku.io.ArrayPuzzleReader;
 import net.ellise.sudoku.io.MapPuzzleReader;
 import net.ellise.sudoku.io.PuzzleReader;
@@ -72,6 +69,7 @@ public class CommandLineSettings {
         menuCommands.put("New", new NewCommand(this, view));
         menuCommands.put("Open", new OpenCommand(this, view));
         menuCommands.put("SaveAs", new SaveCommand(this, view));
+        menuCommands.put("Exit", new ExitCommand());
         return menuCommands;
     }
 }
