@@ -36,7 +36,7 @@ public class SudokuCanvas extends Canvas implements View {
     }
 
     private void drawLines(Graphics g) {
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < 10; i++) {
             int y = i * cellHeight;
             g.drawLine(0, y, getWidth(), y);
             if (i % 3 == 0) {
@@ -44,7 +44,7 @@ public class SudokuCanvas extends Canvas implements View {
                 g.drawLine(0, y-1, getWidth(), y-1);
             }
         }
-        for (int i = 0; i < 9; i ++) {
+        for (int i = 0; i < 10; i ++) {
             int x = i * cellWidth;
             g.drawLine(x, 0, x, getHeight());
             if (i % 3 == 0) {
